@@ -14,8 +14,15 @@ bool checkValidEvent(ninjaEvent_t event){
     else return false;
 }
 
+void printFirstNinjaTag(L1List<NinjaInfo_t>& nList){
+    printf("%s\n", nList[0].id);
+}
+
 bool processEvent(ninjaEvent_t& event, L1List<NinjaInfo_t>& nList) {
-    
+    if (strcmp(event.code, "1") == 0){
+        printFirstNinjaTag(nList);
+    }
     return checkValidEvent(event);
 }
+
 

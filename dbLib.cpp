@@ -83,7 +83,14 @@ void process(L1List<ninjaEvent_t>& eventList, L1List<NinjaInfo_t>& bList) {
     while (!eventList.isEmpty()) {
         if(!processEvent(eventList[0], bList))
             cout << eventList[0].code << " is an invalid event\n";
-
+        
+        if (strcmp(eventList[0].code, "0") == 0){
+            cout << "0:";
+            for (int i=0; i<eventList.getSize() ;i++){
+                cout << " " << eventList[i].code;
+            }
+            cout <<  endl;
+        }
         eventList.removeHead();
     }
 }
