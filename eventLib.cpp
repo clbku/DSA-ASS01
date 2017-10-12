@@ -26,7 +26,7 @@ void loadEvents(char* fName, L1List<ninjaEvent_t> &eList) {
 	string s1;
 	ninjaEvent_t ninEvents;
 	while (!events.eof()){
-		int a;
+		string a;
 		getline(events, s1);
 		stringstream str(s1);
 		while (str >> a){
@@ -34,8 +34,6 @@ void loadEvents(char* fName, L1List<ninjaEvent_t> &eList) {
 			strcpy(ninEvents.code, genericToString(a).c_str());
 			eList.push_back(ninEvents);
 		}
-		
-		
 	}
 	
 }
