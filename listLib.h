@@ -14,6 +14,7 @@
 #include <string>
 using namespace std;
 
+
 class DSAException {
     int     _error;
     string  _text;
@@ -54,7 +55,7 @@ public:
     T&      at(int i);
     T&      operator[](int i);
 
-    bool    find(T& a, int& idx);
+    bool    find(char* a, int& beg, int& end);
     int     insert(int i, T& a);
     int     remove(int i);
 
@@ -152,13 +153,17 @@ int L1List<T>::removeLast() {
 template <class T>
 T&  L1List<T>::operator[](int i){
     L1Item<T>   *p = _pHead;
-    if (i<0 || i > this->getSize()) cout << "full";
+    if (i<0 || i >= this->getSize()) cout << "full";
     while (i>0){
         p = p->pNext;
         i--;
     }
     return p->data;
 }
-
+template <class T>
+bool L1List<T>::find(char* a, int& beg, int& end){
+    L1Item<T>   *p = _pHead;
+    
+}
 
 #endif //A01_LISTLIB_H

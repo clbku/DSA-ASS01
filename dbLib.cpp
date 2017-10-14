@@ -33,6 +33,7 @@ void loadNinjaDB(char* fName, L1List<NinjaInfo_t> &db) {
     NinjaInfo_t ninja;
     string line, a, b, c, d, e, f, g, h;
     getline(database,line);
+    char id[10];
     while(!database.eof()){
         getline(database,a,','); 
         getline(database,b,',');  
@@ -52,9 +53,30 @@ void loadNinjaDB(char* fName, L1List<NinjaInfo_t> &db) {
         ninja.timestamp = t;
 
 
+        char* ninjaTag;
+        // strcpy(ninjaTag, c.c_str());
+        int i;
+        // while (strlen(ninjaTag) < 4){
+        //     i=strlen(ninjaTag);
+        //     ninjaTag[i] = ninjaTag[i-1];
+        //     ninjaTag[0] = 0;
+        // }
         
-        char idNinja[10];
         strcpy(ninja.id, c.c_str());
+        strcpy(id, "");
+        if (strlen(ninja.id) == 1){
+            strcat(id, "000");
+        }
+        else if (strlen(ninja.id) == 2){
+            strcat(id, "00");
+        }
+        else if (strlen(ninja.id) == 3){
+            strcat(id, "0");
+        }
+        strcat(id, ninja.id);
+        strcpy(ninja.id, id);
+        
+        
 
         //cout << "+++" <<ninja.id << endl;
 
@@ -80,10 +102,9 @@ bool parseNinjaInfo(char* pBuf, NinjaInfo_t& nInfo) {
 
 
 void process(L1List<ninjaEvent_t>& eventList, L1List<NinjaInfo_t>& bList) {
+    
     while (!eventList.isEmpty()) {
-        if(!processEvent(eventList[0], bList))
-            cout << eventList[0].code << " is an invalid event\n";
-        
+        if(!processEvent(eventList[0], bList)) cout << eventList[0].code << " is an invalid event\n";
         if (strcmp(eventList[0].code, "0") == 0){
             cout << "0:";
             for (int i=0; i<eventList.getSize() ;i++){
